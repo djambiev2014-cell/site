@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Юридические услуги и автострахование — Межиев Руслан Умарович</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Юридические услуги, автострахование, консультации. ОСАГО, КАСКО, документы, суд.">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #eee;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+    color: #f1c40f;
+}
+
+header h2 {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: normal;
+    color: #ccc;
+}
+
+.section {
+    background: #1c1c1c;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    animation: fade 0.3s ease-in-out;
+}
+
+@keyframes fade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section h3 {
+    margin-top: 0;
+    color: #f1c40f;
+    font-size: 22px;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-main { background: #f1c40f; color: #111; }
+.btn-alt { background: #2c3e50; color: #fff; }
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 15px;
+}
+
+textarea { resize: vertical; min-height: 90px; }
+
+.notice {
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 10px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 35px;
+    color: #777;
+    font-size: 14px;
+}
+footer a { color: #f1c40f; text-decoration: none; }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+    <h1>ЮРИДИЧЕСКИЕ УСЛУГИ</h1>
+    <h2>Межиев Руслан Умарович</h2>
+</header>
+
+<div id="home" class="section">
+    <h3>Выберите направление</h3>
+    <div class="buttons">
+        <button class="btn btn-main" onclick="show('law')">Юридические услуги</button>
+        <button class="btn btn-alt" onclick="show('insurance')">Автострахование</button>
+        <button class="btn btn-main" onclick="show('consult')">Консультация</button>
+    </div>
+</div>
+
+<div id="law" class="section" style="display:none;">
+    <h3>Юридические услуги</h3>
+    <ul>
+        <li>Составление исков</li>
+        <li>Жалобы и претензии</li>
+        <li>Юридические документы</li>
+        <li>Защита в суде</li>
+    </ul>
+    <div class="buttons">
+        <a href="tel:+79640659013" class="btn btn-main">Позвонить</a>
+        <a href="https://wa.me/79640659013" class="btn btn-alt">WhatsApp</a>
+        <button class="btn" onclick="back()">Назад</button>
+    </div>
+</div>
+
+<div id="insurance" class="section" style="display:none;">
+    <h3>Автострахование</h3>
+    <p>ОСАГО и КАСКО — помощь в оформлении и консультациях.</p>
+
+    <form>
+        <input id="name" placeholder="ФИО" required>
+        <input id="phone" placeholder="Телефон" required>
+        <input id="car" placeholder="Марка и модель авто" required>
+        <input id="year" type="number" placeholder="Год выпуска" required>
+
+        <input id="power" type="number" placeholder="Мощность двигателя (л.с.) — по желанию">
+        <input id="plate" placeholder="Госномер — по желанию">
+        <input id="vin" placeholder="VIN — по желанию">
+
+        <textarea id="comment" placeholder="Комментарий"></textarea>
+
+        <div class="buttons">
+            <button type="button" class="btn btn-alt" onclick="sendWhatsApp()">WhatsApp</button>
+            <button type="button" class="btn btn-main" onclick="sendEmail()">Email</button>
+            <button type="button" class="btn" onclick="back()">Назад</button>
+        </div>
+
+        <div class="notice">
+            Отправляя заявку, вы соглашаетесь на обработку персональных данных.
+        </div>
+    </form>
+</div>
+
+<div id="consult" class="section" style="display:none;">
+    <h3>Консультация</h3>
+    <form>
+        <input id="c_name" placeholder="ФИО" required>
+        <input id="c_phone" placeholder="Телефон" required>
+        <textarea id="c_question" placeholder="Ваш вопрос"></textarea>
+        <div class="buttons">
+            <button type="button" class="btn btn-alt" onclick="sendConsultWhatsApp()">WhatsApp</button>
+            <button type="button" class="btn btn-main" onclick="sendConsultEmail()">Email</button>
+            <button class="btn" onclick="back()">Назад</button>
+        </div>
+    </form>
+</div>
+
+<footer>
+    © 2025 · Межиев Руслан Умарович · <a href="privacy.html">Политика конфиденциальности</a>
+</footer>
+
+</div>
+
+<script>
+function show(id){home.style.display=law.style.display=insurance.style.display=consult.style.display='none';document.getElementById(id).style.display='block'}
+function back(){law.style.display=insurance.style.display=consult.style.display='none';home.style.display='block'}
+
+function msg(){
+return `Заявка на автострахование:
+ФИО: ${name.value}
+Телефон: ${phone.value}
+Авто: ${car.value}
+Год: ${year.value}
+Мощность: ${power.value}
+Госномер: ${plate.value}
+VIN: ${vin.value}
+Комментарий: ${comment.value}`;
+}
+
+function sendWhatsApp(){window.open(`https://wa.me/79640659013?text=${encodeURIComponent(msg())}`,'_blank')}
+function sendEmail(){location.href=`mailto:Advokat-911@list.ru?subject=Автострахование&body=${encodeURIComponent(msg())}`}
+function sendConsultWhatsApp(){window.open(`https://wa.me/79640659013?text=${encodeURIComponent(`Консультация:\n${c_name.value}\n${c_phone.value}\n${c_question.value}`)}`,'_blank')}
+function sendConsultEmail(){location.href=`mailto:Advokat-911@list.ru?subject=Консультация&body=${encodeURIComponent(c_question.value)}`}
+</script>
+
+</body>
+</html>
